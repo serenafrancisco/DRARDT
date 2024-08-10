@@ -49,8 +49,8 @@ def assign_interactome_index(pathways_count, interactors_count):
     else:
         return "Low"
 
-def get_uniprot_id(gene_name):
-    url = f"https://rest.uniprot.org/uniprotkb/search?query=gene:{gene_name}&fields=accession"
+def get_human_uniprot_id(gene_name):
+    url = f"https://rest.uniprot.org/uniprotkb/search?query=gene:{gene_name}+AND+organism_id:9606&fields=accession"
     response = requests.get(url)
     data = response.json()
     return data['results'][0]['primaryAccession'] if data['results'] else None
@@ -159,7 +159,7 @@ def main():
             Entrez.email = email 
             
             # Process the data
-            uniprot_id = get_uniprot_id(gene_name)
+            uniprot_id = get_human_uniprot_id(gene_name)
             st.markdown(f"<b style='font-size: 20px;'>UniProt ID for {gene_name}:</b>", unsafe_allow_html=True)
             st.markdown(f"<div style='font-size: 18px;'>{uniprot_id}</div>", unsafe_allow_html=True)
             st.markdown("<br>", unsafe_allow_html=True)
