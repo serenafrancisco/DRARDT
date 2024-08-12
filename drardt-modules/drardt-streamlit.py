@@ -8,7 +8,7 @@ from uniprot import get_human_uniprot_id, get_uniprot_length, get_alphafold_pred
 from clinvar import fetch_variant_ids, fetch_variant_details
 
 def main():
-    st.title("Gene Information Dashboard")
+    st.title("POR*ODIO")
 
     email = st.text_input("Enter your email address:")
     gene_name = st.text_input("Enter gene name:")
